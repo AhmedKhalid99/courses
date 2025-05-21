@@ -1,0 +1,30 @@
+<?php
+$courseOutline = $block->getData('course_outline');
+$watchedCourse = $block->getData('watched_course');
+$courseTitle = $block->getData('product_name');
+?>
+
+<div id="course-outline" data-bind="scope: 'courseOutline'">
+    <!-- KO Template -->
+    <div data-bind="template: 'Customizations_Tasks/course-outline'"></div>
+</div>
+
+<script type="text/x-magento-init">
+{
+    "#course-outline": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "courseOutline": {
+                    "component": "Customizations_Tasks/js/course-outline",
+                    "config": {
+                        "courseData": <?= $courseOutline ? json_encode(json_decode($courseOutline), JSON_UNESCAPED_SLASHES) : '{}' ?>,
+                        "watchedCourse": <?= $watchedCourse ? json_encode(json_decode($watchedCourse), JSON_UNESCAPED_SLASHES) : '{}' ?>,
+                        "courseTitle": <?= json_encode($courseTitle) ?>
+
+                    }
+                }
+            }
+        }
+    }
+}
+</script>

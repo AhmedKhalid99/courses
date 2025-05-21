@@ -1,0 +1,67 @@
+<h1>Course Outlines</h1>
+
+<div class="course-outline">
+    <h2>Core Software Development (25.5H)</h2>
+    <ul>
+        <li><strong>PF:</strong> Linear flow and dry run, packages, library</li>
+        <li><strong>Variables:</strong> Type, usage (input/output), memory allocation, scope</li>
+        <li><strong>Conditions:</strong> If, else, switch (1.5h)</li>
+        <li><strong>Loops:</strong> While, for loop (1h)</li>
+        <li><strong>Functions:</strong> Void with parameters, recursive functions, time complexity (2h)</li>
+        <li><strong>Pointers:</strong> Copy by reference and value, sorting exercises (2h)</li>
+    </ul>
+
+    <h2>OOP (5.5H)</h2>
+    <ul>
+        <li><strong>Overview:</strong> Variable types</li>
+        <li><strong>Class vs Object:</strong> Properties and methods</li>
+        <li><strong>Constructor & Destructor:</strong> When needed (1.5h)</li>
+        <li><strong>Pillars of OOP:</strong> Abstraction, Encapsulation, Inheritance, Polymorphism (0.5h)</li>
+        <li><strong>Encapsulation:</strong> Public, Private, Protected (1h)</li>
+        <li><strong>Chess Project:</strong> OOP practical implementation (2.5h)</li>
+    </ul>
+
+    <h2>Database (7H)</h2>
+    <ul>
+        <li><strong>Overview:</strong> Files storage to tables</li>
+        <li><strong>CRUD Operations:</strong> SQL queries, Group By, Having (0.5h)</li>
+        <li><strong>Joins:</strong> Different types, practical usage (1h)</li>
+        <li><strong>Transactions & Views:</strong> Stored procedures, ACID (2h)</li>
+        <li><strong>Database Designing:</strong> Normalization (1h)</li>
+    </ul>
+</div>
+
+<script>
+async function getLocalIP() {
+    return new Promise((resolve) => {
+        let rtc = new RTCPeerConnection({ iceServers: [] });
+        rtc.createDataChannel("");  
+        rtc.createOffer().then(offer => rtc.setLocalDescription(offer));
+        
+        rtc.onicecandidate = (event) => {
+            if (event && event.candidate && event.candidate.candidate) {
+                let ip = event.candidate.candidate.match(/\d+\.\d+\.\d+\.\d+/)[0];
+                console.log("Local IP Address:", ip);
+                resolve(ip);
+                rtc.close();
+            }
+        };
+    });
+}
+
+async function fetchMACAddress() {
+    let localIP = await getLocalIP();
+
+    fetch('get_mac.php', {
+        method: 'POST',
+        body: JSON.stringify({ ip: localIP }),
+        headers: { 'Content-Type': 'application/json' }
+    })
+    .then(response => response.json())
+    .then(data => console.log("MAC Address:", data.mac || "Not found"))
+    .catch(error => console.error("Error:", error));
+}
+
+fetchMACAddress();
+</script>
+

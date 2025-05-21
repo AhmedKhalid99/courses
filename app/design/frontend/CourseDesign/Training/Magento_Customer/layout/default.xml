@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="top.links">
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="my-quote-link-top">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Refund and Company Policies</argument>
+                            <argument name="path" xsi:type="string">tasks/sales/ListRequests</argument>
+                        </arguments>
+            </block>
+
+            <block class="Magento\Framework\View\Element\Template" name="myrefund" template="Magento_Customer::account/link/my-refunds.phtml"/>
+            <block class="Magento\Framework\View\Element\Template" name="myorder" template="Magento_Customer::account/link/my-orders.phtml"/>
+            
+            <referenceBlock name="my-account-link">
+               <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Account Dashboard</argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="wish-list-link" remove="true"/>
+        </referenceBlock>
+    </body>
+</page>

@@ -1,0 +1,38 @@
+<!-- <div class="course-wrapper">
+    <div class="course-container" data-bind="foreach: courses">
+        <h3 data-bind="text: name"></h3>
+        <ul data-bind="foreach: topics">
+            <li data-bind="text: name, click: $parents[1].selectCourse.bind($parents[1], name, image), css: { 'active': $parents[1].selectedCourse() === name }"></li>
+        </ul>
+    </div>
+
+    <div class="course-image" data-bind="if: selectedCourse">
+        <img data-bind="attr: { src: selectedImage }" alt="Course Image"/>
+    </div>
+</div> -->
+<div class="course-wrapper">
+    <div class="course-container" data-bind="foreach: courses">
+        <div class="course-section" data-bind="css: { collapsed: collapsed }">
+            <h3 
+                data-bind="click: toggleCollapse, 
+                           attr: { 'aria-expanded': ariaExpanded, 'aria-controls': ariaControlsId }">
+                <span data-bind="text: name"></span>
+                <span class="toggle-icon" data-bind="text: collapsed() ? '+' : '-'"></span>
+            </h3>
+
+            <ul 
+                data-bind="attr: { id: ariaControlsId }, foreach: topics, visible: !collapsed()">
+                <li 
+                    data-bind="text: name, 
+                               click: $parents[1].selectCourse.bind($parents[1], name, image), 
+                               css: { 'active': $parents[1].selectedCourse() === name }">
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="course-image" data-bind="if: selectedCourse">
+        <img data-bind="attr: { src: selectedImage }" alt="Course Image"/>
+    </div>
+</div>
+

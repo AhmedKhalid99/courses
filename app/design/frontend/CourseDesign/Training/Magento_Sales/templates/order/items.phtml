@@ -1,0 +1,157 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+
+/** @var \Magento\Sales\Block\Order\Items $block */
+?>
+<div class="order-items-wrapper">
+    <?php if ($block->isPagerDisplayed()) : ?>
+        <div class="order-pager-wrapper">
+            <?= $block->getPagerHtml() ?>
+        </div>
+    <?php endif; ?>
+
+    <?php $items = $block->getItems(); ?>
+    <?php $giftMessage = ''; ?>
+
+    <?php foreach ($items as $item) :
+        if ($item->getParentItem()) {
+            continue;
+        }
+    ?>
+        <div class="order-item">
+            <div class="item-name">
+                <?= $block->escapeHtml($item->getName()) ?>
+            </div>
+            <div class="item-detail"><strong>SKU:</strong> <?= $block->escapeHtml($item->getSku()) ?></div>
+            <div class="item-detail"><strong>Price:</strong> $<?= number_format($item->getPrice(), 2) ?></div>
+            <div class="item-detail"><strong>Quantity:</strong> <?= (int) $item->getQtyOrdered() ?></div>
+            <div class="item-detail"><strong>Subtotal:</strong> $<?= number_format($item->getRowTotal(), 2) ?></div>
+
+            <?php if ($this->helper(\Magento\GiftMessage\Helper\Message::class)->isMessagesAllowed('order_item', $item) && $item->getGiftMessageId()) : ?>
+                <?php $giftMessage = $this->helper(\Magento\GiftMessage\Helper\Message::class)->getGiftMessageForEntity($item); ?>
+                <div class="gift-message">
+                    <strong>Gift Message:</strong>
+                    <div><strong>From:</strong> <?= $block->escapeHtml($giftMessage->getSender()) ?></div>
+                    <div><strong>To:</strong> <?= $block->escapeHtml($giftMessage->getRecipient()) ?></div>
+                    <div><?= /* @noEscape */ $this->helper(\Magento\GiftMessage\Helper\Message::class)->getEscapedGiftMessage($item) ?></div>
+                </div>
+            <?php endif; ?>
+
+            <div class="action-links">
+                <?php if ($item->getRefundRequestId()): ?>
+                    <div class="refund-confirmation">
+                        You have created a refund request for this course, you can see your refund request by clicking on this link <br> <a href="<?= $block->getUrl('tasks/sales/listrequests') ?>"
+                        class="watch-video-link">
+                            Refund Request
+                        </a>
+                    </div>
+                <?php else: ?>
+                    <div class="refund-link"
+                        data-order-id="<?= $block->escapeHtml($item->getOrderId()) ?>"
+                        data-item-id="<?= $block->escapeHtml($item->getItemId()) ?>">
+                        Refund
+                    </div>
+                    <div>
+                        <a href="<?= $block->getUrl('tasks/watch/index', ['item_id' => $item->getItemId()]) ?>"
+                        class="watch-video-link">
+                            Watch Video
+                        </a>
+                    </div>
+                <?php endif; ?>
+            </div>
+
+        </div>
+    <?php endforeach; ?>
+
+    <?php if ($block->isPagerDisplayed()) : ?>
+        <div class="order-pager-wrapper">
+            <?= $block->getPagerHtml() ?>
+        </div>
+    <?php endif; ?>
+</div>
+
+
+<!-- Refund Popup and Overlay -->
+<div id="refund-popup" class="refund-popup">
+    <button id="close-refund-popup" class="refund-close-btn">✖</button>
+    <h3 class="refund-title">Refund Request</h3>
+
+    <div id="refund-message" class="refund-message"></div>
+
+    <form id="refund-form">
+        <input type="hidden" name="order_id">
+        <input type="hidden" name="order_item_id">
+        <label class="refund-label">Reason:</label>
+        <input type="text" name="reason" required class="refund-input">
+        <button type="submit" class="refund-submit-btn">Submit</button>
+    </form>
+</div>
+
+<div id="refund-overlay" class="refund-overlay"></div>
+
+
+<script>
+require(['jquery'], function ($) {
+    $(document).ready(function () {
+        $('.refund-link').click(function () {
+            var orderId = $(this).data('order-id');
+            var orderItemId = $(this).data('item-id');
+
+            $('#refund-form input[name="order_id"]').val(orderId);
+            $('#refund-form input[name="order_item_id"]').val(orderItemId);
+
+            $('#refund-popup, #refund-overlay').fadeIn();
+        });
+
+        $('#close-refund-popup, #refund-overlay').click(function () {
+            $('#refund-popup, #refund-overlay').fadeOut();
+        });
+
+        $('#refund-form').submit(function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: '<?= $block->getUrl("tasks/sales/submitrefund"); ?>',
+                type: 'POST',
+                data: $(this).serialize() + '&form_key=<?= $block->getFormKey() ?>',
+                success: function (response) {
+                    var messageBox = $('#refund-message');
+                    messageBox.show();
+                    
+                    if (response.success) {
+                        messageBox.text('Refund request submitted successfully!').css({ 'background': '#d4edda', 'color': '#155724', 'border': '1px solid #c3e6cb' });
+
+                        // Replace refund link with confirmation message
+                        $('.refund-link[data-item-id="' + response.item_id + '"]').replaceWith('<span style="color: green; font-weight: bold;">You have created a refund request</span>');
+                        
+                        setTimeout(function () {
+                            location.reload();
+                        }, 2000); // Reload after 2 seconds
+                    } else {
+                        messageBox.text(response.message).css({ 'background': '#f8d7da', 'color': '#721c24', 'border': '1px solid #f5c6cb' });
+                    }
+                },
+                error: function () {
+                    var messageBox = $('#refund-message');
+                    messageBox.text('Something went wrong. Please try again.').show().css({ 'background': '#f8d7da', 'color': '#721c24', 'border': '1px solid #f5c6cb' });
+                }
+            });
+        });
+    });
+});
+</script>
+
+
+<?php if ($giftMessage) : ?>
+<script type="text/x-magento-init">
+    {
+        "a.action.show, a.action.close": {
+            "giftMessage": {}
+        }
+    }
+</script>
+<?php endif; ?>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
+        <plugin name="checkout_custom_shipping_fields" 
+                type="Customizations\Tasks\Plugin\LayoutProcessorPlugin" 
+                sortOrder="10" />
+    </type>
+    <type name="Magento\Checkout\Model\ShippingInformationManagement">
+        <plugin name="save_to_quote_table"
+                type="Customizations\Tasks\Plugin\SaveToQuote" 
+                sortOrder="10" />
+    </type>
+
+     <type name="Magento\Sales\Model\Order\OrderCustomerExtractor">
+        <plugin name="Customizations_Taskse_OrderCustomerExtractorPlugin" 
+                type="Customizations\Tasks\Plugin\OrderCustomerExtractorPlugin" 
+                sortOrder="10" />
+    </type> -->
+
+    <!-- <type name="Magento\Checkout\Controller\Index\Index">
+        <plugin name="redirect_guest_to_login" type="\Plugin\RedirectGuestToLogin"/>
+    </type> -->
+    <!-- <preference for="Magento\Checkout\Controller\Index\Index" type="Vendor\Module\Controller\Checkout\Index" /> -->
+</config>

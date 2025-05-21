@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="contact-us" resource="default" engine="innodb" comment="QuickBooks Authorization Data Table">
+        <column xsi:type="int" name="contact_data_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Contact Data ID"/>
+        <column xsi:type="text" name="message" nullable="true" comment="message"/>
+        <column xsi:type="int" name="customer-id" nullable="true" unsigned="true" comment="customer-id"/>
+        <column xsi:type="varchar" name="customer-name" nullable="true" length="255" comment="customer-name"/>
+        <column xsi:type="varchar" name="customer-email" nullable="true" length="255" comment="customer-email"/>
+        <column xsi:type="varchar" name="phone-no" nullable="true" length="255" comment="phone-no"/>
+        <column name="created_at" xsi:type="timestamp" nullable="false" default="CURRENT_TIMESTAMP" comment="Creation Time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="contact_data_id"/>
+        </constraint>
+    </table>
+    <table name="refund_requests" resource="default" engine="innodb" comment="Refund Requests Table">
+        <column name="id" xsi:type="int" unsigned="true" nullable="false" identity="true" comment="ID"/>
+        <column name="customer_id" xsi:type="int"  unsigned="true" nullable="false" comment="Customer ID"/>
+        <column name="order_item_id" xsi:type="int" unsigned="true" nullable="false" comment="Sales Order Item ID"/>
+        <column name="reason" xsi:type="text" nullable="false" comment="Refund Reason"/>
+        <column name="status" xsi:type="varchar" length="50" nullable="false" default="Pending" comment="Status"/>
+        <column name="created_at" xsi:type="timestamp" nullable="false" default="CURRENT_TIMESTAMP" comment="Creation Time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+    </table>
+
+    <table name="sales_order_item" resource="default">
+        <column name="refund_request_id" xsi:type="int"  unsigned="true" nullable="true" comment="Refund Request ID"/>
+    </table>
+
+</schema>

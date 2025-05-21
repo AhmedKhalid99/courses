@@ -1,0 +1,21 @@
+<?php
+/**
+ * Footer links template
+ *
+ * @var $block \Magento\Framework\View\Element\Template
+ */
+?>
+<div class="footer-links">
+    <?php if ($block->getTitle()): ?>
+        <h3 class="footer-links-title"><?= $block->escapeHtml($block->getTitle()) ?></h3>
+    <?php endif; ?>
+    <ul class="footer-links-list">
+        <?php foreach ($block->getLinks() as $link): ?>
+            <li>
+                <a href="<?= $block->escapeUrl($block->getUrl($link['path'])) ?>">
+                    <?= $block->escapeHtml($link['label']) ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</div>

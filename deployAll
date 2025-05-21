@@ -1,0 +1,14 @@
+rm -rf generated/*
+rm -rf pub/static/frontend/*
+rm -rf pub/static/adminhtml/*
+rm -rf var/view_preprocessed/*
+
+
+
+
+php bin/magento s:up
+php bin/magento s:d:c
+
+php bin/magento setup:static-content:deploy -f  
+php bin/magento c:f
+

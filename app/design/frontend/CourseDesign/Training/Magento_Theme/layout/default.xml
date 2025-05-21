@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="3columns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="footer">
+            <block class="Magento\Framework\View\Element\Template" name="footer_links" template="Magento_Theme::html/footer_links.phtml">
+                <arguments>
+                    <argument name="title" xsi:type="string" translate="true">Learning Resources</argument>
+                    <argument name="links" xsi:type="array">
+                        <item name="blog" xsi:type="array">
+                            <item name="label" xsi:type="string" translate="true">Blog</item>
+                            <item name="path" xsi:type="string">blog</item>
+                        </item>
+                        <item name="faq" xsi:type="array">
+                            <item name="label" xsi:type="string" translate="true">FAQ</item>
+                            <item name="path" xsi:type="string">faq</item>
+                        </item>
+                        <item name="support" xsi:type="array">
+                            <item name="label" xsi:type="string" translate="true">Support</item>
+                            <item name="path" xsi:type="string">contact</item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <move element="logo" destination="header.panel" before="-"/> 
+        <move element="minicart" destination="header.panel" after="-"/>
+        <move element="top.search" destination="header.panel"/>
+
+
+        <referenceContainer name="div.sidebar.additional" remove="true" />
+
+    </body>
+</page>

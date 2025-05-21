@@ -1,0 +1,359 @@
+// Import Inter Font from Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+@theme__color__primary: #000000; // Main black color across the theme (instead of blue1)
+@theme__color__primary-alt: #333333; // Slightly lighter black for alternate primary color (instead of blue2)
+@theme__color__secondary: #666666; 
+// Font Override
+@font-family-name__base: 'Inter', sans-serif;
+@font-family__base: @font-family-name__base;
+
+// Button Colors Override
+@button-primary__background: #000000; // black background for primary button
+@button-primary__border: #000000;     // black border for primary button
+@button-primary__color: #ffffff;      // white text color for primary button
+
+@button-secondary__background: #000000; // black background for secondary button
+@button-secondary__border: #000000;     // black border for secondary button
+@button-secondary__color: #ffffff;      // white text color for secondary button
+
+// Button Hover Effects
+@button__hover__background: #f2f2f2;  // light gray background on hover
+@button__hover__color: #000000;        // black text on hover
+
+// Apply font globally
+// body {
+//     font-family: @font-family__base;
+// }
+
+// Button Styles using the defined variables
+.button,
+.action.primary,
+.action.secondary {
+    background-color: @button-primary__background;
+    border: 1px solid @button-primary__border;
+    color: @button-primary__color;
+    transition: all 0.3s ease;
+
+    &:hover,
+    &:focus {
+        background-color: @button__hover__background;
+        color: @button__hover__color;
+        border: 1px solid @button__hover__color;
+    }
+}
+
+// Optional: Button styles for secondary buttons (if used)
+.action.secondary {
+    background-color: @button-secondary__background;
+    border: 1px solid @button-secondary__border;
+    color: @button-secondary__color;
+
+    &:hover,
+    &:focus {
+        background-color: @button__hover__background;
+        color: @button__hover__color;
+        border: 1px solid @button__hover__color;
+    }
+}
+
+.navigation, .breadcrumbs, .page-header .header.panel, .header.content, .footer.content, .page-wrapper > .widget, .page-wrapper > .page-bottom, .block.category.event, .top-container, .page-main { max-width: 100%};
+// HEADER PANEL STYLING
+
+.page-header .panel.wrapper {
+    border-bottom: unset !important;
+}
+
+.panel.header{
+    background: #1d2124;
+    display: flex;
+    align-items: center;
+    .header.links{
+        float: none !important;
+        margin-right: auto !important;
+        li{
+            margin: 10px 0px 0px 2px !important;
+            span{
+                color: white;
+            }
+
+            a {
+                color: white;
+                margin: 0 10px;
+                font-size: 14px;
+                &:hover {
+                    color: #ccc;
+                    font-size: 15px;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+    .logo{
+        margin: 0 0 10px 10px;
+    }
+    .block-search {
+        display: inline-block;
+        float: none;
+        .field {
+            margin-bottom: 5px;
+        }
+        .control{
+            padding: 0 0 0 0;
+            .nested{
+                a{
+                    color: white;
+                    margin: 0 10px;
+                    font-size: 14px;
+                    &:hover {
+                        color: #ccc;
+                        font-size: 15px;
+                        text-decoration: none;
+                    }
+
+                }
+            }
+        }
+    }
+    .minicart-wrapper {
+        float: none;
+    }
+}
+
+
+// Footer Css
+
+
+.page-footer {
+    background-color: #282d32;
+    padding: 30px 0;
+    color: #f0f9ff;
+}
+
+.footer.content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.block.newsletter {
+    margin-bottom: 30px;
+}
+
+.block.newsletter .title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.block.newsletter .content {
+    background-color: #3b6694;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.subscribe .field.newsletter {
+    margin-bottom: 15px;
+}
+
+.subscribe .field.newsletter .control label {
+    color: #fff;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.subscribe .field.newsletter .control input {
+    width: 100%;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #333;
+    font-size: 14px;
+}
+
+.subscribe .actions .action.subscribe.primary {
+    background-color: #0f2a46;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.subscribe .actions .action.subscribe.primary:hover {
+    background-color: #3b6694;
+    transform: scale(1.05);
+}
+
+.footer-links {
+    margin-top: 30px;
+}
+
+.footer-links-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-links-list {
+    padding: 0;
+    list-style: none;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.footer-links-list a {
+    color: #f0f9ff;
+    text-decoration: none;
+    opacity: 0.7;
+    display: inline-block;
+    padding: 6px 0;
+    transition: opacity 0.3s ease;
+}
+
+.footer-links-list a:hover {
+    opacity: 1;
+}
+
+.footer-links-list a:active {
+    color: #3b6694;
+}
+
+.copyright {
+    font-size: 13px;
+    opacity: 0.3;
+    text-align: center;
+    padding-top: 24px;
+    margin-bottom: 0;
+}
+
+.bugs {
+    font-size: 13px;
+    text-align: center;
+    margin-top: 15px;
+    color: #f0f9ff;
+}
+
+.bugs a {
+    color: #3b6694;
+    text-decoration: none;
+}
+
+.bugs a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+    .footer-links-title {
+        font-size: 14px;
+    }
+
+    .footer-links-list a {
+        font-size: 12px;
+    }
+
+    .block.newsletter .title {
+        font-size: 16px;
+    }
+}
+ 
+///form and form fields 
+/* Global Form Styles */
+
+fieldset {
+    border: none;
+    margin: 0 0 30px;
+    padding: 0;
+}
+
+legend {
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Label styling */
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Input, Textarea, Select */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    padding: 0px 4px;
+    font-size: 14px;
+    color: #333;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus {
+    border-color: #1979c3;
+    box-shadow: 0 0 0 2px rgba(25, 121, 195, 0.2);
+    outline: none;
+}
+
+/* Placeholder Styling */
+::placeholder {
+    color: #999;
+    opacity: 1;
+}
+
+/* Checkbox and Radio */
+input[type="checkbox"],
+input[type="radio"] {
+    margin-right: 8px;
+    width: 16px;
+    height: 16px;
+    accent-color: #1979c3;
+}
+
+/* Field Wrapper */
+.field {
+    margin-bottom: 20px;
+}
+
+/* Password Strength Meter (if needed) */
+.password-strength-meter {
+    margin-top: 8px;
+    font-size: 12px;
+    color: #999;
+}
+
+/* Tooltip (Optional, because you have one in HTML) */
+.field-tooltip-content {
+    background: #f8f8f8;
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #555;
+}
+
+
+

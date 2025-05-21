@@ -1,0 +1,46 @@
+.breadcrumbs .items {
+    font-size: 1.5rem;
+}
+
+//////////////////////////////////////////////////////
+// ACTUAL NAVIGATION BAR
+//////////////////////////////////////////////////////
+.nav-sections {margin-bottom: 0 !important;}
+.navigation {
+    background: #14142a !important; 
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;   // center items horizontally
+    }
+
+    a {
+        display: block;
+        padding: 10px 0;           // vertical hit-area for links
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;     // remove underline
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: scale(1.1);  // zoom-in effect on hover
+        }
+    }
+    .ui-menu-item{
+        .level-top.ui-menu-item-wrapper{
+            line-height: 42px;
+        }
+    }
+}
+@media screen and (min-width: 768px) {
+    .navigation {
+      // target the li and the <a> inside that are getting overridden
+      li.level0 > .level-top,
+      li.level0 > .level-top > a {
+        color: #ffffff !important;
+      }
+    }
+}

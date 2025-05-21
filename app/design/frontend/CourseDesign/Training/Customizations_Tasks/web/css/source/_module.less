@@ -1,0 +1,103 @@
+.course-wrapper {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-top: 20px;
+
+
+  .course-container {
+    flex: 2;
+    max-width: 30%;
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 10px black;
+
+    .course-section {
+      margin-bottom: 20px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+
+      h3 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #ffffff;                  // White text
+        background-color: #000000;       // Solid black background
+        padding: 12px 16px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 2px 8px #888888;   // Grey shadow instead of rgba
+    
+        .toggle-icon {
+          font-size: 21px;          
+          font-weight: bold;
+        }
+      }
+    
+      h3:hover {
+        background-color: #4a4343;       // Slightly lighter black on hover
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        transition: max-height 0.3s ease-in-out;
+        overflow: hidden;
+
+        li {
+          padding: 10px 15px;
+          margin-bottom: 8px;
+          background:#f6f6f6 ;
+          border-radius: 6px;
+          cursor: pointer;
+          color: #000;
+          transition: background 0.2s;
+
+          &:hover,
+          &.active {
+            background: #afafaf;
+          }
+        }
+      }
+
+      &.collapsed {
+        ul {
+          max-height: 0;
+          padding: 0;
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  .course-image {
+    flex: 1;
+    min-width: 50%;
+    max-width: 70%;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin-top: 20px;
+      border-radius: 10px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .course-wrapper {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .course-container {
+    min-width: 90%;
+  }
+}

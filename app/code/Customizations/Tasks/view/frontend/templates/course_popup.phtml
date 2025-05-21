@@ -1,0 +1,58 @@
+
+<?php
+/** @var \Magento\Catalog\Model\Product $product */
+$product = $block->getProduct(); 
+$courseOutline = $product->getData('course_outline')
+?>
+<a href="javascript:void(0);" class="view-course-outline" data-outline="<?= $courseOutline ?>">View Course Outline</a>
+
+<div id="course-outline-popup" style="display: none;">
+    <div id="course-outline-content">
+        <!-- Course outline will be dynamically inserted here -->
+    </div>
+</div>
+
+<script type="text/javascript">
+require(
+    [
+        'jquery',
+        'Magento_Ui/js/modal/modal'
+    ],
+    function($, modal) {
+        var options = {
+            type: 'popup',
+            title: 'Course Outline',
+            modalClass: 'course-outline-modal',
+            innerScroll: true,
+            responsive: true
+        };
+
+        // Initialize the popup modal
+        var popup = modal(options, $('#course-outline-popup'));
+
+        // Attach click event to the link with class 'view-course-outline'
+        $(document).on('click', '.view-course-outline', function() {
+            var outline = $(this).data('outline');
+            $.ajax({
+                showLoader: true,
+                url: "<?php echo $block->getUrl('tasks/outline/index'); ?>", // Use your dynamic URL
+                type: 'GET',
+                data: { outline: outline },
+                success: function(response) {
+                    if (!response.error) {
+                        // Insert the response HTML into the modal content
+                        $('#course-outline-content').html(response.html);
+                        // Open the modal
+                        $('#course-outline-popup').modal("openModal");
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function() {
+                    alert('An error occurred while fetching the course outline.');
+                }
+            });
+        });
+    }
+);
+</script>

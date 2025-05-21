@@ -1,0 +1,62 @@
+<?php
+/** @var \Customizations\Tasks\Block\RefundList $block */
+$refundRequests = $block->getRefundRequests();
+?>
+
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>Refund ID</th>
+            <th>Order Item ID</th>
+            <th>Reason</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php if (!empty($refundRequests)) : ?>
+            <?php foreach ($refundRequests as $refund) : ?>
+                <tr>
+                    <td><?= $block->escapeHtml($refund->getId()) ?></td>
+                    <td><?= $block->escapeHtml($refund->getOrderItemId()) ?></td>
+                    <td><?= $block->escapeHtml($refund->getReason()) ?></td>
+                    <td><?= $block->escapeHtml($refund->getStatus()) ?></td>
+                    <td>
+                        <?php if ($refund->getStatus() === 'Pending') : ?>
+                            <form method="post" action="<?= $block->getUrl('tasks/sales/cancelRefund') ?>">
+                                <input type="hidden" name="refund_id" value="<?= $refund->getId() ?>">
+                                <button type="submit" class="cancel-button">Cancel</button>
+                            </form>
+                        <?php else : ?>
+                            <span>N/A</span>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        <?php else : ?>
+            <tr>
+                <td colspan="5">No refund requests found.</td>
+            </tr>
+        <?php endif; ?>
+    </tbody>
+</table>
+
+<style>
+    .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    .data-table th, .data-table td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
+    .cancel-button {
+        background-color: red;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+</style>
