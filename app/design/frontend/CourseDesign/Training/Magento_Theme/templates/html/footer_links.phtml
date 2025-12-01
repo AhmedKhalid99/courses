@@ -1,21 +1,61 @@
 <?php
 /**
- * Footer links template
+ * Custom footer template
  *
  * @var $block \Magento\Framework\View\Element\Template
  */
 ?>
-<div class="footer-links">
-    <?php if ($block->getTitle()): ?>
-        <h3 class="footer-links-title"><?= $block->escapeHtml($block->getTitle()) ?></h3>
-    <?php endif; ?>
+<div>
+
+    <div class="company-item-text">
+            <h3 class="footer-links-title">Coding Cradle</h3>
+            <p>
+            Coding Cradle is a team of dedicated professionals committed to bridging the gap
+between university education and the dynamic needs of the tech industry. Additionally,
+two established tech companies are actively associated with us, extending both technical
+and strategic support to our operations and student initiatives.
+            </p>
+    </div>
+    <div class="footer-links" >
+        <!-- Products & Services (Dynamic Links) -->
+        <div class="">
+    <h3 class="footer-links-title">Products Outlines & Policies</h3>
     <ul class="footer-links-list">
-        <?php foreach ($block->getLinks() as $link): ?>
-            <li>
-                <a href="<?= $block->escapeUrl($block->getUrl($link['path'])) ?>">
-                    <?= $block->escapeHtml($link['label']) ?>
-                </a>
-            </li>
-        <?php endforeach; ?>
+        <li>
+            <a href="<?= $block->escapeUrl($block->getUrl('tasks/policy')) ?>">
+                Company Policy
+            </a>
+        </li>
+        <li>
+            <a href="<?= $block->escapeUrl($block->getUrl('tasks/outline/courses')) ?>">
+                Courses Outline
+            </a>
+        </li>
     </ul>
+</div>
+
+        <!-- Contact Info -->
+        <div>
+            <h3 class="footer-links-title">Contact us & About us</h3>
+            <ul class="footer-links-list">
+                <li>+92-333-4241293</li>
+                <li>talk@codingcradle.com</li>
+                <li>ahmad.khalid99.ak@gmail.com</li>
+                <li><a class="fancy-link-button" href="/contact">Contact us</a></li>
+            </ul>
+        </div>        
+    </div>
+
+    <!-- Copyright -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <div class="copyright">
+    <div class="item-social">
+            <a href="https://www.linkedin.com/company/codingcradle/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/03334241293" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.linkedin.com/company/codingcradle/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        
+    </div>    
+    <p >Coding Cradle Company © 2025</p>
+    </div>
+
 </div>

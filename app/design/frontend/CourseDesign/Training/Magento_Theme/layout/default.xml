@@ -35,5 +35,20 @@
 
         <referenceContainer name="div.sidebar.additional" remove="true" />
 
+
+         <!-- Override title for Menu block -->
+        <referenceBlock name="store.menu">
+            <arguments>
+                <argument name="title" translate="true" xsi:type="string">Courses</argument>
+            </arguments>
+        </referenceBlock>
+
+        <!-- Override title for Account block -->
+        <referenceBlock name="store.links" before="-">
+            <arguments>
+                <argument name="title" translate="true" xsi:type="string">Customer Links</argument>
+            </arguments>
+        </referenceBlock>
+
     </body>
 </page>

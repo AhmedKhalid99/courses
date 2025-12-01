@@ -1,3 +1,100 @@
+.course-outline-container {
+  padding: 20px;
+  background: #f8f8f8;
+  font-family: 'Segoe UI', sans-serif;
+
+  .course-section {
+    background: #fff;
+    margin-bottom: 25px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+
+    h2 {
+      font-size: 24px;
+      color: #2c3e50;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+    .main-note{
+        font-size: 16px;
+        color: #888;
+        font-weight: bold;
+    
+    }
+    .course-topic {
+      margin-bottom: 15px;
+
+      h3 {
+        font-size: 18px;
+        margin: 10px 0 5px;
+        color: #34495e;
+      }
+
+      p {
+        font-size: 14px;
+        color: #555;
+      }
+
+      
+      .note {
+        font-size: 13px;
+        color: #888;
+        font-style: italic;
+      }
+    }
+
+    .subscription-label {
+      font-size: 14px;
+      background: #e67e22;
+      color: white;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+  }
+}
+
+
+
+//////////////////// refund policy 
+.refund-policy-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  max-width: 75%;
+  margin: 0 auto;
+  font-family: @font-family__base;
+
+  .refund-title {
+      font-size: 24px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 20px;
+      text-align: center;
+  }
+
+  .refund-section {
+      background-color: #fff;
+      padding: 16px;
+      margin-bottom: 16px;
+      border-left: 4px solid #0073aa;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+
+      p {
+          margin: 0;
+          font-size: 15px;
+          line-height: 1.6;
+          color: #555;
+      }
+
+      strong {
+          color: #000;
+      }
+  }
+}
+
+//////////////////// refund policy 
 .course-wrapper {
   display: flex;
   gap: 30px;
@@ -99,5 +196,9 @@
 
   .course-container {
     min-width: 90%;
+  }
+  .refund-policy-container {
+    padding: 2px;
+    max-width: 90%;
   }
 }

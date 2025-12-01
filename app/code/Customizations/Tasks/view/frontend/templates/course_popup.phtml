@@ -4,8 +4,10 @@
 $product = $block->getProduct(); 
 $courseOutline = $product->getData('course_outline')
 ?>
-<a href="javascript:void(0);" class="view-course-outline" data-outline="<?= $courseOutline ?>">View Course Outline</a>
-
+<br>
+<strong style="">Please visit through our course outlines so you can select best for you</strong>
+<a href="/tasks/outline/courses" class="view-course-outline" data-outline="<?= $courseOutline ?>">View Course Outline</a>
+<!-- javascript:void(0); -->
 <div id="course-outline-popup" style="display: none;">
     <div id="course-outline-content">
         <!-- Course outline will be dynamically inserted here -->

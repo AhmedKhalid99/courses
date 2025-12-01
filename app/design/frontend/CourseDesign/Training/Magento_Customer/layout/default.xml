@@ -11,7 +11,7 @@
             <block class="Magento\Framework\View\Element\Html\Link\Current" name="my-quote-link-top">
                         <arguments>
                             <argument name="label" xsi:type="string" translate="true">Refund and Company Policies</argument>
-                            <argument name="path" xsi:type="string">tasks/sales/ListRequests</argument>
+                            <argument name="path" xsi:type="string">tasks/policy/</argument>
                         </arguments>
             </block>
 

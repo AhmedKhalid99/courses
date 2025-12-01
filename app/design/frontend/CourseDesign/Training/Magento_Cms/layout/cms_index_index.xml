@@ -5,8 +5,6 @@
             <block class="Magento\Framework\View\Element\Template" name="home.banner" template="Magento_Cms::html/banner.phtml"/>
             <block class="Magento\Framework\View\Element\Template" name="home.course.outline" template="Magento_Cms::html/coursecontent.phtml"/>
             <block class="Magento\Framework\View\Element\Template" name="home.refund.subscription" template="Magento_Cms::html/refund-subscription.phtml"/>
-
-
         </referenceContainer>
     </body>
 </page>

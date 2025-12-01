@@ -1,5 +1,6 @@
 // Cart page
 .product-item-details{
+    vertical-align: middle !important;
     font-size: 24px;
     .item-options{
         font-size: 16px !important;
@@ -47,6 +48,15 @@ a.action.viewcart:hover {
     border: 1px solid #000000;
 }
 
+.item-info{
+.col.price{
+vertical-align: baseline !important;
+}
+.col.subtotal{
+    vertical-align: baseline !important;
+}
+}
+
 //minicart
 
 @media (max-width: 768px) {
@@ -76,9 +86,19 @@ a.action.viewcart:hover {
         background: unset;
         .title {
             display: block;
-            text-align: center;
             font-weight: bold;
         }
+    }
+}
+.product-item-name-block{
+    .product-item-name{
+        font-size: 14px;
+    }
+}
+
+.field{
+    legend {
+        font-size: 14px !important;
     }
 }
 

@@ -28,9 +28,9 @@
                 <?= $block->escapeHtml($item->getName()) ?>
             </div>
             <div class="item-detail"><strong>SKU:</strong> <?= $block->escapeHtml($item->getSku()) ?></div>
-            <div class="item-detail"><strong>Price:</strong> $<?= number_format($item->getPrice(), 2) ?></div>
+            <div class="item-detail"><strong>Price:</strong> PKR<?= number_format($item->getPrice(), 2) ?></div>
             <div class="item-detail"><strong>Quantity:</strong> <?= (int) $item->getQtyOrdered() ?></div>
-            <div class="item-detail"><strong>Subtotal:</strong> $<?= number_format($item->getRowTotal(), 2) ?></div>
+            <div class="item-detail"><strong>Subtotal:</strong> PKR<?= number_format($item->getRowTotal(), 2) ?></div>
 
             <?php if ($this->helper(\Magento\GiftMessage\Helper\Message::class)->isMessagesAllowed('order_item', $item) && $item->getGiftMessageId()) : ?>
                 <?php $giftMessage = $this->helper(\Magento\GiftMessage\Helper\Message::class)->getGiftMessageForEntity($item); ?>
@@ -57,10 +57,10 @@
                         Refund
                     </div>
                     <div>
-                        <a href="<?= $block->getUrl('tasks/watch/index', ['item_id' => $item->getItemId()]) ?>"
+                        <strong
                         class="watch-video-link">
-                            Watch Video
-                        </a>
+                            Coming Soon
+                        </strong>
                     </div>
                 <?php endif; ?>
             </div>
